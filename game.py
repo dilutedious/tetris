@@ -30,8 +30,8 @@ class Game:
         return Piece(shape_name)
     
     def _update_piece(self):
-        self.current_piece = self.next_pieces.pop()
-        self.next_pieces.append(self._get_new_piece) # gets from the bag and displays as next piece
+        self.current_piece = self.next_pieces.pop(0)
+        self.next_pieces.append(self._get_new_piece()) # gets from the bag and displays as next piece
         if not self.board.isvalidposition(self.current_piece):
             self.game_over = True
     
@@ -60,7 +60,7 @@ class Game:
                     self.score += SCORES.get(cleared_lines, 0) # if not in the dictionary, returns 0
                     self.lines += cleared_lines
                     self._check_levelup()
-                self._update_piece
+                self._update_piece()
 
     def rotate_piece(self):
         if self.game_over: return
@@ -94,8 +94,8 @@ class Game:
         if cleared_lines > 0:
             self.score += SCORES.get(cleared_lines, 0)
             self.lines += cleared_lines
-            self._check_levelup
-        self._update_piece
+            self._check_levelup()
+        self._update_piece()
 
     def draw(self, screen):
         self.board.draw(screen)

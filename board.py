@@ -15,7 +15,7 @@ class Board:
             if self.grid[row][col] != COLOURS["background"]:
                 return False # collision with another piece
             
-            return True
+        return True
         
     def lockpiece(self, piece): # locks piece in place on the grid
         for row, col in piece.get_block_positions():

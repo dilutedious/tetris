@@ -27,7 +27,7 @@ class UI:
                 'hover': pygame.image.load(PLAY_BTNHVR_IMG).convert_alpha(),
                 'click': pygame.image.load(PLAY_BTNCLK_IMG).convert_alpha()
             }
-        except pygame.error as e:
+        except (pygame.error, FileNotFoundError) as e:
             print(f"Error loading images: {e}")
             # placeholder
             self.title_image = self.title_font.render("TETRIS", True, COLOURS['white'])
@@ -78,7 +78,7 @@ class UI:
         
         # draw score, lines, time
         info_y = SCORE_AREA_Y + 20
-        self.draw_text(screen, f"SCORE: {game.score}", self.score_font, COLOURS['text'], SIDE_PANEL_X + 10, info_y + 40, center=False)
+        self.draw_text(screen, f"SCORE: {game.score}", self.score_font, COLOURS['text'], SIDE_PANEL_X + 10, info_y + 0, center=False)
         self.draw_text(screen, f"LINES: {game.lines}", self.score_font, COLOURS['text'], SIDE_PANEL_X + 10, info_y + 40, center=False)
 
     def draw_small_piece(self, screen, piece, x_centre, y_centre):
@@ -86,7 +86,7 @@ class UI:
         colour = piece.colour
         small_block_size = BLOCK_SIZE * 0.6
 
-        start_x = x_centre - (len(shape[0] * small_block_size / 2))
+        start_x = x_centre - (len(shape[0]) * small_block_size / 2)
         start_y = y_centre - (len(shape) * small_block_size / 2)
 
         for r_idx, row in enumerate(shape):
@@ -125,8 +125,8 @@ class UI:
     def draw_nameentry(self, screen, name, highscore):
         screen.fill(COLOURS['background'])
         self.draw_text(screen, "NEW HIGH SCORE!", self.menu_font, COLOURS['yellow'], SCREEN_WIDTH // 2, 250)
-        self.draw_text(screen, f"YOUR SCORE: {highscore}", self.score_font, COLOURS['text'], SCREEN_WIDTH // 2, 250)
-        self.draw_text(screen, "ENTER YOUR INITIALS (3 CHARS)", self.score_font, COLOURS['text'], SCREEN_WIDTH // 2, 350)
+        self.draw_text(screen, f"YOUR SCORE: {highscore}", self.score_font, COLOURS['text'], SCREEN_WIDTH // 2, 300)
+        self.draw_text(screen, "ENTER YOUR INITIALS (MAX 10 CHARS)", self.score_font, COLOURS['text'], SCREEN_WIDTH // 2, 350)
 
         # draw input box
         input_box = pygame.Rect(0, 0, 200, 60)

@@ -52,7 +52,7 @@ class Main:
             if self.game_state == "NAME_ENTRY":
                 self.handle_name_entry_events(event)
             if self.game_state == "GAMEOVER":
-                self.handle_game_over_events(event)
+                self.handle_gameover_events(event)
 
     def update(self, dt):
         if self.game_state == "START":
@@ -60,14 +60,14 @@ class Main:
             if self.flash_timer >= 500:
                 self.flash_timer = 0
                 self.flash_on = not self.flash_on
-            elif self.game_state == "PLAYING":
-                self.game.update(dt)
-                if self.game.game_over:
-                    self.final_score = self.game.score
-                    if self.hs_manager.ishighscore(self.final_score):
-                        self.game_state = "NAME_ENTRY"
-                    else:
-                        self.game_state = "GAME_OVER"
+        elif self.game_state == "PLAYING":
+            self.game.update(dt)
+            if self.game.game_over:
+                self.final_score = self.game.score
+                if self.hs_manager.ishighscore(self.final_score):
+                    self.game_state = "NAME_ENTRY"
+                else:
+                    self.game_state = "GAME_OVER"
     
     def draw(self):
         self.screen.fill(COLOURS["background"])
@@ -122,22 +122,23 @@ class Main:
                 self.game_state = "GAME_OVER"
             elif event.key == pygame.K_BACKSPACE:
                 self.playername = self.playername[:-1]
-            elif len(self.playername) < 3:
+            elif len(self.playername) < 10:
                 # allow alphanumeric characters
                 if event.unicode.isalnum():
                     self.playername += event.unicode.upper()
 
     def handle_gameover_events(self, event):
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP or event.key == pygame.KEYDOWN:
-                self.gameover_selected_option = 1 - self.gameover_selected_option
-            elif event.key == pygame.K_z:
-                if self.gameover_selected_option == 0: # play again
+            if event.key == pygame.K_UP:
+                self.gameover_selected_option = (self.gameover_selected_option - 1) % 2 # odd or even
+            elif event.key == pygame.K_DOWN:
+                self.gameover_selected_option = (self.gameover_selected_option + 1) % 2
+            elif event.key in (pygame.K_z, pygame.K_RETURN):
+                if self.gameover_selected_option == 0:
                     self.reset_game()
-                    self.game_state = "PLAYING"
-                else: # menu
-                    self.reset_game()
-                    self.game_state = "START"
+                else:
+                    pygame.quit()
+                    sys.exit()
 
 # ———————————
 
