@@ -55,6 +55,7 @@ class Game:
             self.current_piece.move(-dx, -dy) #reverts the mvoe
             if dy > 0: # if downwards move, then it landed.
                 self.board.lockpiece(self.current_piece)
+                self.score += 11
                 cleared_lines = self.board.clear_lines()
                 if cleared_lines > 0:
                     self.score += SCORES.get(cleared_lines, 0) # if not in the dictionary, returns 0
@@ -90,6 +91,7 @@ class Game:
             self.current_piece.move(0,1)
         self.current_piece.move(0,-1) # moves back one step to be in a valid spot.
         self.board.lockpiece(self.current_piece)
+        self.score += 11
         cleared_lines = self.board.clear_lines()
         if cleared_lines > 0:
             self.score += SCORES.get(cleared_lines, 0)
@@ -107,3 +109,4 @@ class Game:
                                  (GAME_AREA_X + col * BLOCK_SIZE,
                                   GAME_AREA_Y + row * BLOCK_SIZE,
                                   BLOCK_SIZE - 1, BLOCK_SIZE -1))
+            

@@ -72,7 +72,7 @@ class UI:
 
         # draw next pieces panel
         self.draw_text(screen, "NEXT", self.score_font, COLOURS['text'], SIDE_PANEL_X + SIDE_PANEL_WIDTH / 2, PADDING + 30)
-        y_offset = PADDING + 80
+        y_offset = PADDING + 250
         for i, piece in enumerate(game.next_pieces):
             self.draw_small_piece(screen, piece, SIDE_PANEL_X + SIDE_PANEL_WIDTH / 2, y_offset + i * 150)
         
@@ -102,7 +102,7 @@ class UI:
 
         # gameover title
         title_rect = self.gameover_image.get_rect(center=(SCREEN_WIDTH // 2, 100))
-        y_pos = 320
+        y_pos = 200
         for i, (scr, nme) in enumerate (highscores[:10]): # display top 10
             rank_text = f"{i+1}."
             name_text = nme

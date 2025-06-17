@@ -96,8 +96,8 @@ DELAY_REDUCTION = 0.85 # percentage of original (will decrease to this level)
 LINES_PERLEVEL = 10
 SCORES = {
     1: 100,
-    2: 200,
-    3: 300,
+    2: 250,
+    3: 450,
     4: 800,
 }
 
@@ -112,7 +112,7 @@ PLAY_BTNCLK_IMG = "playbutton3.png"
 
 pygame.init()
 pygame.font.init() # for fonts
-pygame.mixer.init() # for sounds
+# pygame.mixer.init() # for sounds
 
 
 

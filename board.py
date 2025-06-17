@@ -42,4 +42,15 @@ class Board:
                                  (GAME_AREA_X + c_idx * BLOCK_SIZE,
                                  GAME_AREA_Y + r_idx * BLOCK_SIZE,
                                  BLOCK_SIZE, BLOCK_SIZE))
+                
+                # drawing the gridlines:
+                for x in range(GAME_AREA_X, GAME_AREA_X + GAME_AREA_WIDTH + 1, BLOCK_SIZE):
+                    pygame.draw.line(screen, COLOURS['grid'],
+                                     (x, GAME_AREA_Y),
+                                     (x, GAME_AREA_Y + GAME_AREA_HEIGHT))
+                for y in range(GAME_AREA_Y, GAME_AREA_HEIGHT + 1, BLOCK_SIZE):
+                    pygame.draw.line(screen, COLOURS['grid'],
+                                     (GAME_AREA_X, y),
+                                     (GAME_AREA_X + GAME_AREA_WIDTH, y))
+
 
