@@ -58,7 +58,7 @@ class Main:
                 distance = dx*dx + dy*dy
                 if distance > 0.3: # Start fading in past this distance
                     # Opacity increases the further from the center it is
-                    alpha = min(255, int((distance - 0.3) * 150))
+                    alpha = min(255, int((distance - 0.3) * 250))
                     vignette.set_at((x, y), (0, 0, 0, alpha))
         return vignette
 
