@@ -58,6 +58,7 @@ class Game:
                 self.score += 11
                 cleared_lines = self.board.clear_lines()
                 if cleared_lines > 0:
+                    CLEARLINE_SOUND.play()
                     self.score += SCORES.get(cleared_lines, 0) # if not in the dictionary, returns 0
                     self.lines += cleared_lines
                     self._check_levelup()
@@ -70,6 +71,7 @@ class Game:
         self.current_piece.rotate()
 
         if self.board.isvalidposition(self.current_piece):
+            ROTATE_SOUND.play()
             return # simple rotation is valid
         
         # wall kicking
@@ -77,6 +79,7 @@ class Game:
         for offset in offsets:
             self.current_piece.move(offset, 0)
             if self.board.isvalidposition(self.current_piece):
+                ROTATE_SOUND.play()
                 return # if it found a valid position
             self.current_piece.move(-offset, 0) # reverts changes
 
@@ -94,6 +97,7 @@ class Game:
         self.score += 11
         cleared_lines = self.board.clear_lines()
         if cleared_lines > 0:
+            CLEARLINE_SOUND.play()
             self.score += SCORES.get(cleared_lines, 0)
             self.lines += cleared_lines
             self._check_levelup()

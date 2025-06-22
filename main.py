@@ -6,12 +6,22 @@ from game import Game
 from ui import UI
 from highscores_manager import HighScoreManager
 
+# game clasee
+
 class Main:
     def __init__(self):
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         pygame.display.set_caption("Tetris")
         self.clock = pygame.time.Clock()
         self.game_state = "START" # can be [START, PLAYING, NAME_ENTRY, GAMEOVER]
+
+        # bgm
+        try:
+            pygame.mixer.music.load("tetris.mp3")
+            pygame.mixer.music.set_volume(0.5)
+            pygame.mixer.music.play(-1)
+        except pygame.error as e:
+            print(f"Could not load or play music: {e}")
 
         self.ui = UI()
         self.hs_manager = HighScoreManager()
@@ -96,13 +106,17 @@ class Main:
                 sys.exit()
 
             if self.game_state == "START":
+                pygame.mixer.music.set_volume(0.2)
                 self.handle_start_events(event)
             elif self.game_state == "PLAYING":
+                pygame.mixer.music.set_volume(0.5)
                 self.handle_playing_events(event)
             elif self.game_state == "NAME_ENTRY":
                 self.handle_name_entry_events(event)
+                pygame.mixer.music.set_volume(0.2)
             elif self.game_state == "GAMEOVER":
                 self.handle_gameover_events(event)
+                pygame.mixer.music.set_volume(0.1)
 
     def update(self, dt):
         if self.game_state == "START":

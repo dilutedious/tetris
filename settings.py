@@ -2,6 +2,13 @@
 
 import pygame
 
+pygame.mixer.init()
+
+# sounds
+
+ROTATE_SOUND = pygame.mixer.Sound("rotate.mp3")
+CLEARLINE_SOUND = pygame.mixer.Sound("clearline.mp3")
+
 # screen and layout
 SCREEN_WIDTH = 900
 SCREEN_HEIGHT = 850
@@ -112,7 +119,3 @@ PLAY_BTNCLK_IMG = "playbutton3.png"
 
 pygame.init()
 pygame.font.init() # for fonts
-# pygame.mixer.init() # for sounds
-
-
-
