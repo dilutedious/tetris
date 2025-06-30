@@ -119,3 +119,4 @@ PLAY_BTNCLK_IMG = "playbutton3.png"
 
 pygame.init()
 pygame.font.init() # for fonts
+

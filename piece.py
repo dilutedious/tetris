@@ -13,7 +13,8 @@ class Piece:
 
         # position
 
-        self.x = GRID_COLS // 2 - len(self.shape[0]) // 2 # places the block in the middle of the screen. (half grid minus half block size)
+        self.x = GRID_COLS // 2 - len(self.shape[0]) // 2 # places the block in 
+        # the middle of the screen. (half grid minus half block size)
         self.y = 0 # 0 is at the top.
 
     def rotate(self):

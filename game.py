@@ -114,3 +114,4 @@ class Game:
                                   GAME_AREA_Y + row * BLOCK_SIZE,
                                   BLOCK_SIZE - 1, BLOCK_SIZE -1))
             
+            

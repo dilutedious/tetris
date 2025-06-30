@@ -6,7 +6,7 @@ from game import Game
 from ui import UI
 from highscores_manager import HighScoreManager
 
-# game clasee
+# game clase
 
 class Main:
     def __init__(self):
@@ -212,3 +212,4 @@ class Main:
 if __name__ == '__main__':
     main_game = Main()
     main_game.run()
+
